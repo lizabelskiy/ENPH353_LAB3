@@ -36,45 +36,15 @@ class image_converter:
     
     center_x = int(np.mean(non_zero_x))
     deviation = center_x - cols/2
-    speed_factor = 0.5
+
+    speed_factor = 0.6
     deviation_factor = -18
+    
     move = Twist()
     move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
     move.angular.z = deviation_factor * (deviation)/cols
     self.vel_pub.publish(move)
 
-    # speed_factor = 0.5
-    # deviation_factor = -18
-    # if abs(deviation) < cols*0.1:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-    
-    # elif abs(deviation) >= cols*0.1 and abs(deviation) < cols*0.2:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-    
-    # elif abs(deviation) >= cols*0.2 and abs(deviation) < cols*0.4:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-    
-    # elif abs(deviation) >= cols*0.4 and abs(deviation) < cols*0.6:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-
-    # elif abs(deviation) >= cols*0.6 and abs(deviation) < cols*0.8:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-
-    # else:
-    #   move.linear.x = speed_factor * (0.5 - abs(deviation)/cols)
-    #   move.angular.z = deviation_factor * (deviation)/cols
-    #   self.vel_pub.publish(move)
-      
     cv2.circle(cv_image, (center_x, rows-30), 20, (0, 0, 255), -1)
     cv2.imshow("Image window", cv_image)
     cv2.waitKey(3)
