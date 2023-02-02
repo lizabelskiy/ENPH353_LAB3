@@ -29,7 +29,7 @@ class image_converter:
 
     gray_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
     median_filtered_image = cv2.medianBlur(gray_image, 3)
-    _, thresholded_image= cv2.threshold(median_filtered_image, 128, 255, cv2.THRESH_BINARY)
+    _, thresholded_image= cv2.threshold(median_filtered_image, 80, 255, cv2.THRESH_BINARY)
 
     edges = cv2.Canny(thresholded_image[rows-50:,:], 100, 200)
     _, non_zero_x = np.nonzero(edges)
